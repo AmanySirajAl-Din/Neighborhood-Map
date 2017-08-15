@@ -3,33 +3,42 @@
 
 <head>
     <title>Project-Neighborhood Map</title>
-    <link href="scripts/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- in the Second Part .. Some Style -->
-    <link href="css/main-style.css" rel="stylesheet"/>
-    
+    <link href="css/main-style.css" rel="stylesheet" />
+
     <!-- To load Google Maps in my site -->
     <!-- Simply By Adding three Parts into my code  -->
 </head>
 
 <body>
-    
+
+    <div class="fixed-top-div" role="navigation">
+        <div class="listview-toggle-btn inline-block">
+            <span class="sr-only">Toggel navigation</span>
+            <i class="glyphicon glyphicon-align-justify"></i>
+        </div>
+        <!-- end listview-toggle-div -->
+        <h3 class="page-title" class="inline-block">Project: Neighborhood Map</h3>
+    </div>
+
     <!-- the Second Part to load the Map -->
     <!-- div element in my HTML body -->
     <!-- with thw id="map" -->
     <!-- and some style -->
     <div id="map"></div>
-    
-    
+
+
     <!-- ======= Scripts ======= -->
-    
-    <script src="../../jquery-3.1.1.min.js"></script>
-    <script src="../../bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
-    <script src="scripts/knockout-3.4.2.js"></script>
+
+    <script src="lib/jquery-3.1.1.min.js"></script>
+    <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="lib/knockout-3.4.2.js"></script>
     <!-- Finally the Last Part to load the Map -->
     <!-- Some JS -->
     <script src="scripts/mainScript.js"></script>
-    
-    
+
+
     <!-- the First Part to Load the Map -->
     <!-- a script line into my HTML to load the API -->
     <!-- load the JS API -->
@@ -42,9 +51,9 @@
 
     <!-- maps.googleapis.com is the endpoint that we're loading the JS from -->
     <!-- the prameter v-3 indicates that we're calling version 3 of the API -->
-    
-    
-    
+
+
+
 </body>
 
 </html>

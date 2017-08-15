@@ -7,4 +7,4 @@ Part 4: The Frontend - JS & AJAX
 
 ###### The requirments of the project:
     1. Loading a full-screen Google Map Using Google Maps API.
-    2.  Display map markers identifying at least 5 locations.
+    2. Display map markers identifying at least 5 locations.
