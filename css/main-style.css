@@ -1,4 +1,4 @@
-@font-face{
+@font-face {
     font-family: 'Signika-Regular';
     src: url(../fonts/Signika-Regular.ttf);
 }
@@ -6,15 +6,52 @@
 * {
     font-family: 'Signika-Regular', Tahoma, Arial;
 }
+
 html,
-body{
-	font-family: Arial, sans-serif;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+body {
+    font-family: Arial, sans-serif;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-#map{
+#map {
     height: 100%;
 }
 
+.inline-block {
+    display: inline-block;
+}
+
+.button-style {
+    cursor: pointer;
+}
+
+.fixed-top-div {
+    z-index: 10;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    background: #0f1415;
+    color: aliceblue;
+    display: flex;
+}
+
+.page-title {
+    margin: auto;
+    width: 95%;
+    text-align: center;
+    padding: 10px;
+    vertical-align: middle;
+}
+
+.listview-toggle-btn {
+    font-size: x-large;
+    padding: 1px 10px;
+    margin: 5px 10px;
+    border: 1px solid #7b7b7b;
+    border-radius: 10%;
+    vertical-align: middle;
+}
