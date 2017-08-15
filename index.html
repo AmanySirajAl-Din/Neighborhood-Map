@@ -1,9 +1,43 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Project-Neighborhood Map</title>
-</head>
-<body>
 
+<head>
+    <title>Project-Neighborhood Map</title>
+    <!-- in the Second Part .. Some Style -->
+    <link href="css/main-style.css" rel="stylesheet"/>
+    
+    <!-- To load Google Maps in my site -->
+    <!-- Simply By Adding three Parts into my code  -->
+</head>
+
+<body>
+    <!-- the Second Part to load the Map -->
+    <!-- div element in my HTML body -->
+    <!-- with thw id="map" -->
+    <!-- and some style -->
+    <div id="map"></div>
+    
+    
+    <!-- Finally the Last Part to load the Map -->
+    <!-- Some JS -->
+    <script src="scripts/mainScript.js"></script>
+    
+    
+    <!-- the First Part to Load the Map -->
+    <!-- a script line into my HTML to load the API -->
+    <!-- load the JS API -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJeAcMu__TdDZtMNYZ4tBD6uSgIn97dis&v=3&callback=initMap">
+    </script>
+    <!-- this loads the JS definitions when the page starts loading in the browser -->
+    <!-- loading the JS her asynchronously which means -->
+    <!-- that the rest of the page will render while the JS API loads -->
+    <!-- and our callback fun (initMap) will excute when the API is done loading -->
+
+    <!-- maps.googleapis.com is the endpoint that we're loading the JS from -->
+    <!-- the prameter v-3 indicates that we're calling version 3 of the API -->
+    
+    
+    
 </body>
+
 </html>
