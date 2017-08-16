@@ -1,4 +1,22 @@
+/* source from https://www.w3schools.com/howto/howto_js_sidenav.asp */
+/* ================================================================ */
+var listviewClicked = false;
 
+$(".listview-toggle-btn").click(function () {
+    if (listviewClicked) { /* Close/hide the sidenav */
+        $(".side-nav").css("width", "0");
+        $(".side-nav").css("padding", "0");
+        $(".main-container").css("margin-left", "0");
+        $(".map-container").css("left", "0");
+        $(".map-container").css("left", "0");
+    } else { /* Open the side-nav */
+        $(".side-nav").css("width", "300px");
+        $(".side-nav").css("padding", "20px");
+        $(".main-container").css("margin-left", "300px");
+        $(".map-container").css("left", "300px");
+    }
+    listviewClicked = !listviewClicked;
+});
 
 // Finally the Last Part to load the Map -->
 // Some JS -->
@@ -145,7 +163,7 @@ function initMap() {
         // Extend the boundaries of the map for each marker position
         mapBounds.extend(markers[i].position);
     }
-    
+
     // fit the boundaries of the map for all the markers
     map.fitBounds(mapBounds);
 

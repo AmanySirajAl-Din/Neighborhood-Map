@@ -3,7 +3,7 @@
 
 <head>
     <title>Project-Neighborhood Map</title>
-    <link href="fonts/Signika-Regular.ttf" rel="stylesheet"/>
+    <link href="fonts/Signika-Regular.ttf" rel="stylesheet" />
     <link rel="stylesheet" href="lib/font-awesome-4.7.0/css/font-awesome.min.css">
     <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- in the Second Part .. Some Style -->
@@ -15,22 +15,31 @@
 
 <body>
 
-    <div class="fixed-top-div navbar-inverse" role="navigation">
-        <div class="listview-toggle-btn inline-block button-style">
-            <span class="sr-only">Toggel navigation</span>
-            <i class="fa fa-bars"></i>
-        </div>
-        <!-- end listview-toggle-div -->
-        <h3 class="page-title inline-block">Project: Neighborhood Map</h3>
+
+    <div class="side-nav">
+        <h1>Hello</h1>
     </div>
 
-    <!-- the Second Part to load the Map -->
-    <!-- div element in my HTML body -->
-    <!-- with thw id="map" -->
-    <!-- and some style -->
-    <div id="map"></div>
 
+    <div class="main-container">
 
+        <div class="fixed-top-div navbar-inverse" role="navigation">
+            <div class="listview-toggle-btn inline-block button-style">
+                <span class="sr-only">Toggel navigation</span>
+                <i class="fa fa-bars"></i>
+            </div>
+            <!-- end listview-toggle-btn -->
+            <h3 class="page-title inline-block">Project: Neighborhood Map</h3>
+        </div>
+
+        <div class="map-container">
+        <!-- the Second Part to load the Map -->
+        <!-- div element in my HTML body -->
+        <!-- with thw id="map" -->
+        <!-- and some style -->
+        <div id="map"></div>
+</div>
+    </div>
     <!-- ======= Scripts ======= -->
 
     <script src="lib/jquery-3.1.1.min.js"></script>
