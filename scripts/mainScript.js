@@ -167,6 +167,13 @@ function initMap() {
     // fit the boundaries of the map for all the markers
     map.fitBounds(mapBounds);
 
-
-
 }
+
+// Using Knockout.js library
+var ViewModel = function () {
+    var self = this;
+    
+    
+};
+
+ko.applyBindings(new ViewModel);
