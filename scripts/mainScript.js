@@ -1,5 +1,13 @@
+
+
 // Finally the Last Part to load the Map -->
 // Some JS -->
+// Source from Udacity FSND 
+// part 4: lesson 7: Getting Started with APIs
+// Link: https://classroom.udacity.com/nanodegrees/nd004/parts/135b6edc-f1cd-4cd9-b831-1908ede75737/modules/4fd8d440-9428-4de7-93c0-4dca17a36700/lessons/8304370457/concepts/83061122970923
+// and use Google Geocoder Tool
+// Link: https://google-developers.appspot.com/maps/documentation/utils/geocoder/
+// to find the lat,lng of my locations
 
 var map;
 
@@ -25,6 +33,7 @@ function initMap() {
 
     // these are the real estate listings that will be shown to the user
     // Normally we'd have these in a database instead
+    // intialize my locations array of objects
     var locations = [
         {
             title: 'Bibliotheca Alexandrina',
