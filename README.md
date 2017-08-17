@@ -8,3 +8,13 @@ Part 4: The Frontend - JS & AJAX
 ###### The requirments of the project:
     1. Loading a full-screen Google Map Using Google Maps API.
     2. Display map markers identifying at least 5 locations.
+    3. Show my Locations list using binding by Knockout.js library.
+    4. Sort my Locations list.
+    5. Intialize infoWindow var.
+    6. Add infoWindow for each marker, has the marker title
+    7. Create Click event for each marker (bounce and show infoWindow).
+    8. Add Filter drop menu
+    9. Add place type for each location to be filtered according it.
+    10. Intialize locationTypes observableArray.
+    11. Sort The locationTypes observableArray.
+    12. Bind the locationTypes to the filter menu.
