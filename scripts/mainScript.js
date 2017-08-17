@@ -191,4 +191,21 @@ var ViewModel = function () {
     // fit the boundaries of the map for all the markers
     map.fitBounds(mapBounds);
 
+
+    // This function populates the infowindow when the marker is clicked. We'll only allow
+    // one infowindow which will open at the marker that is clicked, and populate based
+    // on that markers position.
+    function populateInfoWindow(marker, infowindow) {
+        // Check to make sure the infowindow is not already opened on this marker.
+        if (infowindow.marker != marker) {
+            infowindow.marker = marker;
+            infowindow.setContent('<div>' + marker.title + '</div>');
+            infowindow.open(map, marker);
+            // Make sure the marker property is cleared if the infowindow is closed.
+            infowindow.addListener('closeclick', function () {
+                infowindow.setMarker = null;
+                marker.setAnimation(null);
+            });
+        }
+    }
 };
