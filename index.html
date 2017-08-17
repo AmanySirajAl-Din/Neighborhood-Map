@@ -18,8 +18,8 @@
         <hr/>
        
         <h3><i class="fa fa-filter" aria-hidden="true"></i> Filter</h3>
-        <h4><select class="filter-list">
-            <option></option>
+        <h4><select data-bind="foreach: locationTypes" class="filter-list">
+            <option data-bind="text: $data, value: $data"></option>
         </select></h4>
         <ul data-bind="foreach: markers" class="locations-list">
             <li data-bind="text: title" class="location-list-item button-style"></li>
