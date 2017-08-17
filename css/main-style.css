@@ -67,23 +67,31 @@ body {
     vertical-align: middle;
 }
 
+.listview-toggle-btn:hover{
+    color: #111617;
+    background-color: aliceblue;
+}
+
 
 /* source from https://www.w3schools.com/howto/howto_js_sidenav.asp */
 /* ================================================================ */
 
 .main-container {
     transition: margin-left .5s;
+    margin-left: 300px;
 }
 
 .map-container {
     transition: left .5s;
+    left: 300px;
 }
 
 .side-nav {
     height: 100%;
     /* 100% Full-height */
-    width: 0;
+    width: 300px;
     /* 0 width - change this with JavaScript */
+    padding: 30px;
     position: fixed;
     /* Stay in place */
     z-index: 111;
@@ -96,4 +104,13 @@ body {
     /* 0.5 second transition effect to slide in the sidenav */
     background-color: #111617;
     color: aliceblue;
+    font-size: 16px;
 }
+
+/* ============================================================= */
+
+.location-list-item{
+    margin: 15px;
+    font-size: 16px;
+}
+
