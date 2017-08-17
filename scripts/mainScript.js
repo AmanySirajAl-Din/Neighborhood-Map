@@ -64,70 +64,81 @@ function initMap() {
             location: {
                 lat: 31.214013,
                 lng: 29.885634
-            }
+            },
+            placeType: "archaeological"
         },
         {
             title: 'Montaza Palace',
             location: {
                 lat: 31.288497,
                 lng: 30.01597
-            }
+            },
+            placeType: "archaeological"
 
         }, {
             title: 'Al Mamoura Beach',
             location: {
                 lat: 31.290818,
                 lng: 30.030668
-            }
+            },
+            placeType: "beach"
         }, {
             title: 'Delices Cafe',
             location: {
                 lat: 31.200107,
                 lng: 29.899553
-            }
+            },
+            placeType: "cafe"
         },
         {
             title: 'Selsela Cafe',
             location: {
                 lat: 31.210232,
                 lng: 29.909239
-            }
+            },
+            placeType: "cafe"
         }, {
             title: 'San Stefano Cinema',
             location: {
                 lat: 31.2453,
                 lng: 29.9676
-            }
+            },
+            placeType: "cinema"
         }, {
             title: 'Bibliotheca Alexandrina',
             location: {
                 lat: 31.208874,
                 lng: 29.9092
-            }
+            },
+            placeType: "library"
         }, {
             title: 'El Raml Station',
             location: {
                 lat: 31.201533,
                 lng: 29.901052
-            }
+            },
+            placeType: "station"
         }, {
             title: 'Shaaban Fish Restaurant',
             location: {
                 lat: 31.19894,
                 lng: 29.89507
-            }
+            },
+            placeType: "restaurant"
         }, {
             title: 'Alban Sewisra',
             location: {
                 lat: 31.214183,
                 lng: 29.922147
-            }
+            },
+            placeType: "restaurant"
         }, {
             title: 'San Stefano Grand Plaza',
             location: {
                 lat: 31.245489,
                 lng: 29.967578
-            }
+            },
+            placeType: "hotel"
         }
     ];
 
