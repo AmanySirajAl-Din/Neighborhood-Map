@@ -192,6 +192,7 @@ var ViewModel = function () {
         // Get the position from the location array.
         var position = locations[i].location;
         var title = locations[i].title;
+        var placeType = this.locationTypes()[i];
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
             title: title,
@@ -199,6 +200,7 @@ var ViewModel = function () {
             position: position,
             animation: google.maps.Animation.DROP,
             id: i,
+            placeType: placeType,
             // icon: 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
             //    label: 'G'
         });
@@ -234,7 +236,9 @@ var ViewModel = function () {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
-            infowindow.setContent('<div>' + marker.title + '</div>');
+            var infowindowContent = '<div>' + marker.title + '</div>';
+            infowindowContent += '<div>' + marker.placeType + '</div>';
+            infowindow.setContent(infowindowContent);
             infowindow.open(map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
             infowindow.addListener('closeclick', function () {
