@@ -140,6 +140,9 @@ function initMap() {
 var ViewModel = function () {
     var self = this;
 
+    // Intialize infoWindow var
+    var largeInfowindow = new google.maps.InfoWindow();
+
     // we may have listings that are outside the initial zoom area
     // So to adjust the boundaries of the map to fit everything
     // create a new latLngBounds instance
