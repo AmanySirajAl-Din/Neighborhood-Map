@@ -130,8 +130,10 @@ function initMap() {
             }
         }
     ];
-    
+
     ko.applyBindings(new ViewModel);
+
+
 }
 
 // Using Knockout.js library
@@ -167,12 +169,13 @@ var ViewModel = function () {
         markers.push(marker);
 
 
-        // Create an onclick event to open an infowindow at each marker.
-        marker.addListener('click', toggleMarkerClick);
+        /*// Create an onclick event to open an infowindow at each marker.
+        marker.addListener('click', toggleMarkerClick);*/
 
         // Extend the boundaries of the map for each marker position
         mapBounds.extend(markers[i].position);
     }
+    
     
 
     // fit the boundaries of the map for all the markers
