@@ -171,10 +171,10 @@ var ViewModel = function () {
             self.locationTypes.push(locItem);
         }
     });
-    
+
     // Sort The locationTypes observableArray
     this.locationTypes.sort();
-    
+
     // Intialize infoWindow var
     var largeInfowindow = new google.maps.InfoWindow();
 
@@ -215,7 +215,7 @@ var ViewModel = function () {
         // Extend the boundaries of the map for each marker position
         mapBounds.extend(markers[i].position);
     }
-    
+
     // sort markers alphabetically by the title
     // to be displayed in the list view in alphabetical order
     // source link:
@@ -223,7 +223,7 @@ var ViewModel = function () {
     markers.sort(function (a, b) {
         return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
     });
-    
+
 
     // fit the boundaries of the map for all the markers
     map.fitBounds(mapBounds);
@@ -238,6 +238,7 @@ var ViewModel = function () {
             infowindow.marker = marker;
             var infowindowContent = '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + marker.placeType + '</div>';
+            infowindowContent += '<div id="wiki-div"></div>';
             infowindow.setContent(infowindowContent);
             infowindow.open(map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
@@ -246,6 +247,38 @@ var ViewModel = function () {
                 marker.setAnimation(null);
             });
         }
+        
+        // get Wiki articles
+        var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
+
+        // workaround for error handling with JSON P
+        // first create a Timeout function
+        // when timesout
+        // it will change the text of the wiki header to failier
+        var wikiRequestTimeout = setTimeout(function () {
+            $("#wiki-div").text("failed to get wikipedia resources");
+        }, 8000);
+
+        $.ajax({
+            url: urlWiki,
+            dataType: 'jsonp',
+            // jsonp: "callback",
+            success: function (response) {
+                var wikiArticles = response[1];
+                console.log(wikiArticles);
+
+                for (var i = 0; i < wikiArticles.length; i++) {
+                    var articleStr = wikiArticles[i];
+                    var url = "https://en.wikipedia.org/wiki/" + articleStr;
+                    $("#wiki-div").append("<li><a href='" + url + "'>" +
+                        articleStr + "</a></li>")
+                };
+
+                // success to get wikipedia resources
+                // then clear the Timeout Fun
+                clearTimeout(wikiRequestTimeout);
+            }
+        });
     }
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */

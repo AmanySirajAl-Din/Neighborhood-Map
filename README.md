@@ -18,3 +18,4 @@ Part 4: The Frontend - JS & AJAX
     10. Intialize locationTypes observableArray.
     11. Sort The locationTypes observableArray.
     12. Bind the locationTypes to the filter menu.
+    13. Click event for the list of locations items.
