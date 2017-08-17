@@ -8,21 +8,20 @@
     <link href="lib/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- in the Second Part .. Some Style -->
     <link href="css/main-style.css" rel="stylesheet" />
-
     <!-- To load Google Maps in my site -->
     <!-- Simply By Adding three Parts into my code  -->
 </head>
 
 <body>
-
-
     <div class="side-nav">
-        <h1>Locations</h1>
+        <h2>Amany's Locations</h2>
+        <hr/>
+       
+        <ul data-bind="foreach: markers" class="locations-list">
+            <li data-bind="text: title" class="location-list-item button-style"></li>
+        </ul>
     </div>
-
-
     <div class="main-container">
-
         <div class="fixed-top-div navbar-inverse" role="navigation">
             <div class="listview-toggle-btn inline-block button-style">
                 <span class="sr-only">Toggel navigation</span>
@@ -31,25 +30,21 @@
             <!-- end listview-toggle-btn -->
             <h3 class="page-title inline-block">Project: Neighborhood Map</h3>
         </div>
-
         <div class="map-container">
-        <!-- the Second Part to load the Map -->
-        <!-- div element in my HTML body -->
-        <!-- with thw id="map" -->
-        <!-- and some style -->
-        <div id="map"></div>
-</div>
+            <!-- the Second Part to load the Map -->
+            <!-- div element in my HTML body -->
+            <!-- with thw id="map" -->
+            <!-- and some style -->
+            <div id="map"></div>
+        </div>
     </div>
     <!-- ======= Scripts ======= -->
-
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script src="lib/knockout-3.4.2.js"></script>
     <!-- Finally the Last Part to load the Map -->
     <!-- Some JS -->
     <script src="scripts/mainScript.js"></script>
-
-
     <!-- the First Part to Load the Map -->
     <!-- a script line into my HTML to load the API -->
     <!-- load the JS API -->
@@ -59,12 +54,8 @@
     <!-- loading the JS her asynchronously which means -->
     <!-- that the rest of the page will render while the JS API loads -->
     <!-- and our callback fun (initMap) will excute when the API is done loading -->
-
     <!-- maps.googleapis.com is the endpoint that we're loading the JS from -->
     <!-- the prameter v-3 indicates that we're calling version 3 of the API -->
-
-
-
 </body>
 
 </html>

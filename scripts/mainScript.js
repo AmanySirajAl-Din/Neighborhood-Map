@@ -130,6 +130,8 @@ function initMap() {
             }
         }
     ];
+    
+    ko.applyBindings(new ViewModel);
 }
 
 // Using Knockout.js library
