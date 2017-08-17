@@ -151,6 +151,27 @@ function initMap() {
 var ViewModel = function () {
     var self = this;
 
+    // make a locationTypes observableArray
+    this.locationTypes = ko.observableArray([]);
+    this.locationTypes.push("All");
+
+
+    // loop over my locations and put its data in locationTypes
+    locations.forEach(function (locationItem) {
+        var repeatedLocation = false;
+        var locItem = "";
+        self.locationTypes().forEach(function (locType) {
+            console.log()
+            if (locationItem.placeType.toLowerCase() == locType.toLowerCase()) {
+                repeatedLocation = true;
+            }
+        });
+        if (!repeatedLocation) {
+            locItem = locationItem.placeType.charAt(0).toUpperCase() + locationItem.placeType.slice(1);
+            self.locationTypes.push(locItem);
+        }
+    });
+   
     // Intialize infoWindow var
     var largeInfowindow = new google.maps.InfoWindow();
 
