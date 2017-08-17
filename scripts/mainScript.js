@@ -171,7 +171,10 @@ var ViewModel = function () {
             self.locationTypes.push(locItem);
         }
     });
-   
+    
+    // Sort The locationTypes observableArray
+    this.locationTypes.sort();
+    
     // Intialize infoWindow var
     var largeInfowindow = new google.maps.InfoWindow();
 
