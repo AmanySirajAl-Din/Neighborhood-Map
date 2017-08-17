@@ -114,3 +114,7 @@ body {
     font-size: 16px;
 }
 
+.filter-list {
+    color: black;
+    width: 80%;
+}
