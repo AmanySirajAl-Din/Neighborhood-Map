@@ -118,3 +118,7 @@ body {
     color: black;
     width: 80%;
 }
+
+.marker-title{
+    font-size: 20px;
+}
