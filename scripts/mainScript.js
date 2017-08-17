@@ -172,8 +172,8 @@ var ViewModel = function () {
         markers.push(marker);
 
 
-        /*// Create an onclick event to open an infowindow at each marker.
-        marker.addListener('click', toggleMarkerClick);*/
+        // Create an onclick event to open an infowindow at each marker.
+        marker.addListener('click', toggleMarkerClick);
 
         // Extend the boundaries of the map for each marker position
         mapBounds.extend(markers[i].position);
@@ -208,4 +208,18 @@ var ViewModel = function () {
             });
         }
     }
+
+    /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
+    /* =================================================================================================== */
+    function toggleMarkerClick() {
+        for (var i = 0; i < markers.length; i++) {
+            markers[i].setAnimation(null);
+        }
+        if (this.getAnimation() == null) {
+            populateInfoWindow(this, largeInfowindow);
+            this.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    }
+    /* =================================================================================================== */
+
 };
