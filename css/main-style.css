@@ -115,8 +115,15 @@ body {
     font-size: 16px;
 }
 
+.location-list-item:hover{
+    background-color: aliceblue;
+    color: #202627;
+}
+
 .location-list-item-selected{
-    background-color: rgba(83, 83, 83, 0.59);
+    background-color: rgba(83, 83, 83, 0.59) !important;
+    color: aliceblue !important;
+    cursor: default !important;
 }
 
 .filter-list {
@@ -130,5 +137,4 @@ body {
 
 .marker-title{
     font-size: 20px;
-    /*#202627   */
 }

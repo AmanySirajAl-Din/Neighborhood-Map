@@ -302,7 +302,7 @@ var ViewModel = function () {
     this.activeMarker = function (clickedLocation, event) {
         self.toggleMarkerClick(clickedLocation);
         $(".location-list-item").removeClass("location-list-item-selected");
-        event.target.classList.add("location-list-item-selected")
+        event.target.classList.add("location-list-item-selected");
     };
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
