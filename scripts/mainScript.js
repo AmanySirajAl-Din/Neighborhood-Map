@@ -192,7 +192,7 @@ var ViewModel = function () {
         // Get the position from the location array.
         var position = locations[i].location;
         var title = locations[i].title;
-        var placeType = this.locationTypes()[i];
+        var placeType = locations[i].placeType;
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
             title: title,
