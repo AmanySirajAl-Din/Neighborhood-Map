@@ -119,6 +119,10 @@ body {
     width: 80%;
 }
 
+.infowindow-content{
+    padding: 10px;
+}
+
 .marker-title{
     font-size: 20px;
 }

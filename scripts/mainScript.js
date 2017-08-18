@@ -236,9 +236,11 @@ var ViewModel = function () {
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
-            var infowindowContent = '<div class="marker-title">' + marker.title + '</div>';
+            var infowindowContent = '<div class="infowindow-content">';
+            infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + marker.placeType + '</div>';
             infowindowContent += '<div id="wiki-div"></div>';
+            infowindowContent += '</div>';
             infowindow.setContent(infowindowContent);
             infowindow.open(map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
