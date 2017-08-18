@@ -317,7 +317,16 @@ var ViewModel = function () {
     $(".filter-list").change(filteringFun);
 
     function filteringFun() {
-        
+        self.deActivateAllMarkers();
+        var selectedFilter = $(this).find(":selected").val().toLowerCase();
+        for (var i = 0; i < markers.length; i++) {
+            if (selectedFilter == "all") {
+                markers[i].setMap(map);
+            } else if (selectedFilter != markers[i].placeType) {
+                markers[i].setMap(null);
+            }
+
+        }
     }
 
 
