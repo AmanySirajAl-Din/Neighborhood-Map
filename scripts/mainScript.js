@@ -249,7 +249,7 @@ var ViewModel = function () {
                 marker.setAnimation(null);
             });
         }
-        
+
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
@@ -267,7 +267,7 @@ var ViewModel = function () {
             // jsonp: "callback",
             success: function (response) {
                 var wikiArticles = response[1];
-                if(wikiArticles.length==0){
+                if (wikiArticles.length == 0) {
                     $("#wiki-div").text("No Wikipedia Articles was found");
                 }
                 console.log(wikiArticles);
@@ -285,6 +285,16 @@ var ViewModel = function () {
             }
         });
     }
+    
+    this.activeMarker = function (clickedLocation) {
+            //toggleMarkerClick();
+            console.log("yes")
+            for (var i = 0; i < markers.length; i++) {
+            markers[i].setAnimation(null);
+        }
+        populateInfoWindow(clickedLocation, largeInfowindow);
+            clickedLocation.setAnimation(google.maps.Animation.BOUNCE);
+        };
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
     /* =================================================================================================== */
