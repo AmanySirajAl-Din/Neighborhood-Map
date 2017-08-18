@@ -267,6 +267,9 @@ var ViewModel = function () {
             // jsonp: "callback",
             success: function (response) {
                 var wikiArticles = response[1];
+                if(wikiArticles.length==0){
+                    $("#wiki-div").text("No Wikipedia Articles was found");
+                }
                 console.log(wikiArticles);
 
                 for (var i = 0; i < wikiArticles.length; i++) {
