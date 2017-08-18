@@ -155,9 +155,9 @@ var ViewModel = function () {
     this.locationTypes = ko.observableArray([]);
     this.locationTypes.push("All");
 
-     // Create observableArray of filtered markers
+    // Create observableArray of filtered markers
     this.filteredMarkers = ko.observableArray([]);
-    
+
     // loop over my locations and put its data in locationTypes
     locations.forEach(function (locationItem) {
         var repeatedLocation = false;
@@ -241,7 +241,7 @@ var ViewModel = function () {
             infowindow.marker = marker;
             var infowindowContent = '<div class="infowindow-content">';
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
-            infowindowContent += '<div class="marker-placeType">' + marker.placeType + '</div>';
+            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1)) + '</div>';
             infowindowContent += '<div id="wiki-div"></div>';
             infowindowContent += '</div>';
             infowindow.setContent(infowindowContent);
@@ -298,9 +298,11 @@ var ViewModel = function () {
             markers[i].setAnimation(null);
         }
     };
-    
-     this.activeMarker = function (clickedLocation) {
+
+    this.activeMarker = function (clickedLocation, event) {
         self.toggleMarkerClick(clickedLocation);
+        $(".location-list-item").removeClass("location-list-item-selected");
+        event.target.classList.add("location-list-item-selected")
     };
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
@@ -314,7 +316,7 @@ var ViewModel = function () {
     };
     /* =================================================================================================== */
 
-   
+
     // Filter's change event
     // to filter the locations and markers
     $(".filter-list").change(filteringFun);
@@ -326,19 +328,18 @@ var ViewModel = function () {
         // source from: 
         // https://stackoverflow.com/questions/17545939/removeall-vs-empty-an-array-with-in-knockoutjs
         self.filteredMarkers.removeAll();
-        
+
         var selectedFilter = $(this).find(":selected").val().toLowerCase();
         for (var i = 0; i < markers.length; i++) {
             if (selectedFilter == "all" || selectedFilter == markers[i].placeType) {
                 markers[i].setMap(map);
                 self.filteredMarkers.push(markers[i]);
                 console.log("all")
-          
-            } else {// if (selectedFilter != markers[i].placeType) 
+
+            } else { // if (selectedFilter != markers[i].placeType) 
                 markers[i].setMap(null);
 
             }
-
         }
     }
 

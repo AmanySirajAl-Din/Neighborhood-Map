@@ -45,7 +45,7 @@ body {
     left: 0;
     width: 100%;
     height: auto;
-    background-color: #111617;
+    background-color: #202627;
     color: aliceblue;
     display: flex;
 }
@@ -102,7 +102,7 @@ body {
     /* Disable horizontal scroll */
     transition: 0.5s;
     /* 0.5 second transition effect to slide in the sidenav */
-    background-color: #111617;
+    background-color: #202627;
     color: aliceblue;
     font-size: 16px;
 }
@@ -110,8 +110,13 @@ body {
 /* ============================================================= */
 
 .location-list-item{
-    margin: 15px;
+    padding: 10px;
+    width: 100%;
     font-size: 16px;
+}
+
+.location-list-item-selected{
+    background-color: rgba(83, 83, 83, 0.59);
 }
 
 .filter-list {
@@ -125,4 +130,5 @@ body {
 
 .marker-title{
     font-size: 20px;
+    /*#202627   */
 }
