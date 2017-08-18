@@ -285,8 +285,8 @@ var ViewModel = function () {
             }
         });
     }
-    
-    function markerClicked(){
+
+    function markerClicked() {
         self.toggleMarkerClick(this);
     };
 
@@ -297,7 +297,7 @@ var ViewModel = function () {
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
     /* =================================================================================================== */
-    this.toggleMarkerClick = function(currentMarker) {
+    this.toggleMarkerClick = function (currentMarker) {
         self.deActivateAllMarkers();
         if (currentMarker.getAnimation() == null) {
             populateInfoWindow(currentMarker, largeInfowindow);
@@ -305,10 +305,20 @@ var ViewModel = function () {
         }
     };
     /* =================================================================================================== */
-    
-    this.deActivateAllMarkers = function() {
+
+    this.deActivateAllMarkers = function () {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setAnimation(null);
         }
     };
-};
+
+    // Filter's change event
+    // to filter the locations and markers
+    $(".filter-list").change(filteringFun);
+
+    function filteringFun() {
+        
+    }
+
+
+}; /* end of ViewModel */
