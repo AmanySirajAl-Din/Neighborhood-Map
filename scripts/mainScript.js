@@ -210,7 +210,7 @@ var ViewModel = function () {
 
 
         // Create an onclick event to open an infowindow at each marker.
-        marker.addListener('click', toggleMarkerClick);
+        marker.addListener('click', markerClicked);
 
         // Extend the boundaries of the map for each marker position
         mapBounds.extend(markers[i].position);
@@ -286,27 +286,29 @@ var ViewModel = function () {
         });
     }
     
+    function markerClicked(){
+        self.toggleMarkerClick(this);
+    };
+
     this.activeMarker = function (clickedLocation) {
-            //toggleMarkerClick();
-            console.log("yes")
-            for (var i = 0; i < markers.length; i++) {
-            markers[i].setAnimation(null);
-        }
-        populateInfoWindow(clickedLocation, largeInfowindow);
-            clickedLocation.setAnimation(google.maps.Animation.BOUNCE);
-        };
+        self.toggleMarkerClick(clickedLocation);
+        console.log("yes")
+    };
 
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
     /* =================================================================================================== */
-    function toggleMarkerClick() {
+    this.toggleMarkerClick = function(currentMarker) {
+        self.deActivateAllMarkers();
+        if (currentMarker.getAnimation() == null) {
+            populateInfoWindow(currentMarker, largeInfowindow);
+            currentMarker.setAnimation(google.maps.Animation.BOUNCE);
+        }
+    };
+    /* =================================================================================================== */
+    
+    this.deActivateAllMarkers = function() {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setAnimation(null);
         }
-        if (this.getAnimation() == null) {
-            populateInfoWindow(this, largeInfowindow);
-            this.setAnimation(google.maps.Animation.BOUNCE);
-        }
-    }
-    /* =================================================================================================== */
-
+    };
 };
