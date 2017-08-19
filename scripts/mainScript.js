@@ -286,6 +286,7 @@ var ViewModel = function () {
             infowindow.addListener('closeclick', function () {
                 infowindow.setMarker = null;
                 marker.setAnimation(null);
+                $(".location-list-item").removeClass("location-list-item-selected");
             });
         }
         // get Wiki articles
