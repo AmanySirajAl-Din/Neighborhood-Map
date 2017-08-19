@@ -233,6 +233,9 @@ var ViewModel = function () {
     // to be displayed in the list view in alphabetical order
     // source link:
     // https://stackoverflow.com/questions/5421253/sort-javascript-array-of-objects-based-on-one-of-the-objects-properties
+    markers.sort(function (a, b) {
+        return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
+    });
     self.filteredMarkers.sort(function (a, b) {
         return a.title.toLowerCase().localeCompare(b.title.toLowerCase());
     });
