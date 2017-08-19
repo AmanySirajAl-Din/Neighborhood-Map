@@ -4,10 +4,10 @@ var listviewClicked = false;
 
 $(".listview-toggle-btn").click(function () {
     if (listviewClicked) { /* Open the side-nav */
-        $(".side-nav").css("width", "350px");
+        $(".side-nav").css("width", "310px");
         $(".side-nav").css("padding", "30px");
-        $(".main-container").css("margin-left", "350px");
-        $(".map-container").css("left", "350px");
+        $(".main-container").css("margin-left", "310px");
+        $(".map-container").css("left", "310px");
     } else { /* Close/hide the side-nav */
         $(".side-nav").css("width", "0");
         $(".side-nav").css("padding", "0");
@@ -37,17 +37,19 @@ var map;
 
 // Create a new blank array for all the listing markers.
 var markers = [],
-    locations = [];
-
+    locations = [],
+    geocoder,
+    formatted_address;
 
 // Error handling for 
 // failing to load Google map
 // https://stackoverflow.com/questions/14687237/google-maps-api-async-loading
 var loadMapTimeout = setTimeout(function () {
     if (!window.google || !window.google.maps) {
-        alert("Failed to load Google map")
+        alert("Failed to load Google map" + status)
     }
 }, 5000);
+
 
 function initMap() {
     /* ====== Load Google Map ====== */
@@ -63,6 +65,7 @@ function initMap() {
         // the higher the number, the more detail
         // up to level 21
     });
+    geocoder = new google.maps.Geocoder;
 
     /* ====== Create Locations Array ====== */
 
@@ -157,6 +160,7 @@ function initMap() {
 
 }
 
+
 // Using Knockout.js library
 var ViewModel = function () {
     var self = this;
@@ -205,8 +209,10 @@ var ViewModel = function () {
         var position = locations[i].location;
         var title = locations[i].title;
         var placeType = locations[i].placeType;
+        
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
+            //placeId: place.place_id,
             title: title,
             map: map,
             position: position,
@@ -220,7 +226,6 @@ var ViewModel = function () {
         // Push the marker to our array of markers.
         markers.push(marker);
         self.filteredMarkers.push(marker);
-
 
         // Create an onclick event to open an infowindow at each marker.
         marker.addListener('click', markerClicked);
@@ -249,6 +254,21 @@ var ViewModel = function () {
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
+        // get location details
+        // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+        geocoder.geocode({'location': marker.position}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+              console.log(results)
+              formatted_address = results[0].formatted_address;
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+        
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -256,6 +276,7 @@ var ViewModel = function () {
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
             infowindowContent += '</div>';
+            infowindowContent += '<div class="place-details">'+ formatted_address +'</div>';
             infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
             infowindowContent += '<div id="wikiArticles-list"></div>';
             infowindowContent += '</div></div></div>';
@@ -267,7 +288,6 @@ var ViewModel = function () {
                 marker.setAnimation(null);
             });
         }
-
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
@@ -365,10 +385,4 @@ var ViewModel = function () {
             }
         }
     }
-
-
-
-
-
-
 }; /* end of ViewModel */

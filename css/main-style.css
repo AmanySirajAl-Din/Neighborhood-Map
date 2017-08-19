@@ -78,18 +78,18 @@ body {
 
 .main-container {
     transition: margin-left .5s;
-    margin-left: 350px;
+    margin-left: 310px;
 }
 
 .map-container {
     transition: left .5s;
-    left: 350px;
+    left: 310px;
 }
 
 .side-nav {
     height: 100%;
     /* 100% Full-height */
-    width: 350px;
+    width: 310px;
     /* 0 width - change this with JavaScript */
     padding: 30px;
     position: fixed;
@@ -142,3 +142,5 @@ body {
 .marker-title{
     font-size: 20px;
 }
+
+@media
