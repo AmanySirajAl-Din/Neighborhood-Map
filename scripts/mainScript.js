@@ -45,7 +45,7 @@ var markers = [],
 // https://stackoverflow.com/questions/14687237/google-maps-api-async-loading
 var loadMapTimeout = setTimeout(function () {
     if (!window.google || !window.google.maps) {
-        alert("Failed to load Google map" + status)
+        alert("Failed to load Google map" + status);
     }
 }, 5000);
 
@@ -64,7 +64,7 @@ function initMap() {
         // the higher the number, the more detail
         // up to level 21
     });
-    geocoder = new google.maps.Geocoder;
+    geocoder = new google.maps.Geocoder();
 
     /* ====== Create Locations Array ====== */
 
@@ -155,7 +155,7 @@ function initMap() {
     ];
 
     clearTimeout(loadMapTimeout);
-    ko.applyBindings(new ViewModel);
+    ko.applyBindings(new ViewModel());
 
 }
 
@@ -309,7 +309,7 @@ var ViewModel = function () {
             success: function (response) {
                 var wikiArticles = response[1];
                 $("#wikiArticles-list").text("");
-                if (wikiArticles.length == 0) {
+                if (wikiArticles.length === 0) {
                     $("#wikiArticles-list").text("No Wikipedia Articles was found");
                 }
                 for (var i = 0; i < wikiArticles.length; i++) {
@@ -317,7 +317,7 @@ var ViewModel = function () {
                     var url = "https://en.wikipedia.org/wiki/" + articleStr;
                     $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
                         articleStr + "</a></li>")
-                };
+                }
 
                 // success to get wikipedia resources
                 // then clear the Timeout Fun
@@ -335,7 +335,7 @@ var ViewModel = function () {
                 $(this).addClass("location-list-item-selected");
             }
         });
-    };
+    }
 
     this.deactivateAllMarkers = function () {
         for (var i = 0; i < markers.length; i++) {
@@ -352,7 +352,7 @@ var ViewModel = function () {
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
     /* =================================================================================================== */
     this.toggleMarkerClick = function (currentMarker) {
-        if (currentMarker.getAnimation() == null) {
+        if (currentMarker.getAnimation() === null) {
             self.deactivateAllMarkers();
             populateInfoWindow(currentMarker, largeInfowindow);
             currentMarker.setAnimation(google.maps.Animation.BOUNCE);
