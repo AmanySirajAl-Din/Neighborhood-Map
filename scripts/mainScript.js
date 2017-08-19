@@ -241,7 +241,7 @@ var ViewModel = function () {
             infowindow.marker = marker;
             var infowindowContent = '<div class="infowindow-content">';
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
-            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1)); 
+            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
             infowindowContent += '</div>';
             infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
             infowindowContent += '<div id="wikiArticles-list"></div>';
@@ -293,7 +293,14 @@ var ViewModel = function () {
     }
 
     function markerClicked() {
-        self.toggleMarkerClick(this);
+        var thisMarker = this;
+        self.toggleMarkerClick(thisMarker);
+        $(".location-list-item").removeClass("location-list-item-selected");
+        $(".location-list-item").each(function (index) {
+            if ($(this).text() == thisMarker.title) {
+                $(this).addClass("location-list-item-selected");
+            }
+        });
     };
 
     this.deactivateAllMarkers = function () {
