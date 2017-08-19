@@ -39,6 +39,16 @@ var map;
 var markers = [],
     locations = [];
 
+
+// Error handling for 
+// failing to load Google map
+// https://stackoverflow.com/questions/14687237/google-maps-api-async-loading
+var loadMapTimeout = setTimeout(function () {
+    if (!window.google || !window.google.maps) {
+        alert("Failed to load Google map")
+    }
+}, 5000);
+
 function initMap() {
     /* ====== Load Google Map ====== */
 
@@ -142,8 +152,8 @@ function initMap() {
         }
     ];
 
+    clearTimeout(loadMapTimeout);
     ko.applyBindings(new ViewModel);
-
 
 }
 
