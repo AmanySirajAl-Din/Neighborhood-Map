@@ -1,9 +1,8 @@
 /* source from https://www.w3schools.com/howto/howto_js_sidenav.asp */
 /* ================================================================ */
-var listviewClicked = false;
 
 $(".listview-toggle-btn").click(function () {
-    if (listviewClicked) { /* Open the side-nav */
+    if ($(".side-nav").css("width") == "0px") { /* Open the side-nav */
         $(".side-nav").css("width", "310px");
         $(".side-nav").css("padding", "30px");
         $(".main-container").css("margin-left", "310px");
@@ -16,7 +15,6 @@ $(".listview-toggle-btn").click(function () {
         $(".map-container").css("left", "0");
 
     }
-    listviewClicked = !listviewClicked;
 });
 
 // Finally the Last Part to load the Map -->

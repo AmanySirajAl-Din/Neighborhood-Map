@@ -15,7 +15,9 @@ body {
     padding: 0;
 }
 
-.main-container, .map-container, #map {
+.main-container,
+.map-container,
+#map {
     height: 100%;
 }
 
@@ -27,8 +29,6 @@ body {
     bottom: 0;
     padding-top: 45px;
 }
-
-
 
 .inline-block {
     display: inline-block;
@@ -59,6 +59,7 @@ body {
 }
 
 .listview-toggle-btn {
+    max-height: 37.6px;
     font-size: x-large;
     padding: 1px 10px;
     margin: 5px 10px;
@@ -67,13 +68,15 @@ body {
     vertical-align: middle;
 }
 
-.listview-toggle-btn:hover{
+.listview-toggle-btn:hover {
     color: #111617;
     background-color: aliceblue;
 }
 
 
 /* source from https://www.w3schools.com/howto/howto_js_sidenav.asp */
+
+
 /* ================================================================ */
 
 .main-container {
@@ -107,24 +110,25 @@ body {
     font-size: 16px;
 }
 
+
 /* ============================================================= */
 
-.locations-list{
+.locations-list {
     list-style-type: none;
 }
 
-.location-list-item{
+.location-list-item {
     padding: 5px;
     width: 100%;
     font-size: 16px;
 }
 
-.location-list-item:hover{
+.location-list-item:hover {
     background-color: aliceblue;
     color: #202627;
 }
 
-.location-list-item-selected{
+.location-list-item-selected {
     background-color: rgba(83, 83, 83, 0.59) !important;
     color: aliceblue !important;
     cursor: default !important;
@@ -135,13 +139,42 @@ body {
     width: 80%;
 }
 
-.infowindow-content{
+.infowindow-content {
     padding: 10px;
     max-width: 250px;
 }
 
-.marker-title{
+.marker-title {
     font-size: 20px;
 }
 
-@media
+@media screen and (max-width: 675px) {
+    .main-container {
+        transition: margin-left .5s;
+        margin-left: 0px;
+    }
+    .map-container {
+        transition: left .5s;
+        left: 0px;
+    }
+    .side-nav {
+        height: 100%;
+        /* 100% Full-height */
+        width: 0px;
+        /* 0 width - change this with JavaScript */
+        padding: 0px;
+        position: fixed;
+        /* Stay in place */
+        z-index: 111;
+        /* Stay on top */
+        top: 0;
+        left: 0;
+        overflow-x: hidden;
+        /* Disable horizontal scroll */
+        transition: 0.5s;
+        /* 0.5 second transition effect to slide in the sidenav */
+        background-color: #202627;
+        color: aliceblue;
+        font-size: 16px;
+    }
+}
