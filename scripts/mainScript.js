@@ -314,7 +314,7 @@ var ViewModel = function () {
                     var articleStr = wikiArticles[i];
                     var url = "https://en.wikipedia.org/wiki/" + articleStr;
                     $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
-                        articleStr + "</a></li>")
+                        articleStr + "</a></li>");
                 }
 
                 // success to get wikipedia resources
