@@ -351,8 +351,8 @@ var ViewModel = function () {
     /* source from: https://developers.google.com/maps/documentation/javascript/examples/marker-animations */
     /* =================================================================================================== */
     this.toggleMarkerClick = function (currentMarker) {
-        self.deactivateAllMarkers();
         if (currentMarker.getAnimation() == null) {
+            self.deactivateAllMarkers();
             populateInfoWindow(currentMarker, largeInfowindow);
             currentMarker.setAnimation(google.maps.Animation.BOUNCE);
         }
