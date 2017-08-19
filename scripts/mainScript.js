@@ -38,8 +38,7 @@ var map;
 // Create a new blank array for all the listing markers.
 var markers = [],
     locations = [],
-    geocoder,
-    formatted_address;
+    geocoder;
 
 // Error handling for 
 // failing to load Google map
@@ -177,7 +176,6 @@ var ViewModel = function () {
         var repeatedLocation = false;
         var locItem = "";
         self.locationTypes().forEach(function (locType) {
-            console.log()
             if (locationItem.placeType.toLowerCase() == locType.toLowerCase()) {
                 repeatedLocation = true;
             }
@@ -254,20 +252,6 @@ var ViewModel = function () {
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
-        // get location details
-        // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        geocoder.geocode({'location': marker.position}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-              console.log(results)
-              formatted_address = results[0].formatted_address;
-            } else {
-              window.alert('No results found');
-            }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
-        });
         
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
@@ -276,7 +260,7 @@ var ViewModel = function () {
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
             infowindowContent += '</div>';
-            infowindowContent += '<div class="place-details">'+ formatted_address +'</div>';
+            infowindowContent += '<div class="place-details"></div>';
             infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
             infowindowContent += '<div id="wikiArticles-list"></div>';
             infowindowContent += '</div></div></div>';
@@ -289,6 +273,22 @@ var ViewModel = function () {
                 $(".location-list-item").removeClass("location-list-item-selected");
             });
         }
+        
+        // get location details
+        // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+        geocoder.geocode({'location': marker.position}, function(results, status) {
+          if (status === 'OK') {
+            if (results[0]) {
+                $(".place-details").text(results[0].formatted_address);
+            } else {
+              window.alert('No results found');
+            }
+          } else {
+            window.alert('Geocoder failed due to: ' + status);
+          }
+        });
+        
+        
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
@@ -310,8 +310,6 @@ var ViewModel = function () {
                 if (wikiArticles.length == 0) {
                     $("#wikiArticles-list").text("No Wikipedia Articles was found");
                 }
-                console.log(wikiArticles);
-
                 for (var i = 0; i < wikiArticles.length; i++) {
                     var articleStr = wikiArticles[i];
                     var url = "https://en.wikipedia.org/wiki/" + articleStr;
@@ -378,7 +376,6 @@ var ViewModel = function () {
             if (selectedFilter == "all" || selectedFilter == markers[i].placeType) {
                 markers[i].setMap(map);
                 self.filteredMarkers.push(markers[i]);
-                console.log("all")
 
             } else { // if (selectedFilter != markers[i].placeType) 
                 markers[i].setMap(null);
