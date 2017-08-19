@@ -137,6 +137,7 @@ body {
 
 .infowindow-content{
     padding: 10px;
+    max-width: 250px;
 }
 
 .marker-title{
