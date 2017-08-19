@@ -91,7 +91,7 @@ function initMap() {
             placeType: "cafe"
         },
         {
-            title: 'Selsela Cafe',
+            title: 'El-Selsela Cafe',
             location: {
                 lat: 31.210232,
                 lng: 29.909239
