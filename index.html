@@ -21,9 +21,9 @@
         <h4><select data-bind="foreach: locationTypes" class="filter-list">
             <option data-bind="text: $data, value: $data"></option>
         </select></h4>
-        <ul data-bind="foreach: filteredMarkers" class="locations-list">
-            <li data-bind="text: title, click: $parent.activeMarker" class="location-list-item button-style"></li>
-        </ul>
+        <div data-bind="foreach: filteredMarkers" class="locations-list">
+            <p data-bind="text: title, click: $parent.activeMarker" class="location-list-item button-style"></p>
+        </div>
     </div>
     <div class="main-container">
         <div class="fixed-top-div navbar-inverse" role="navigation">

@@ -4,10 +4,10 @@ var listviewClicked = false;
 
 $(".listview-toggle-btn").click(function () {
     if (listviewClicked) { /* Open the side-nav */
-        $(".side-nav").css("width", "300px");
+        $(".side-nav").css("width", "350px");
         $(".side-nav").css("padding", "30px");
-        $(".main-container").css("margin-left", "300px");
-        $(".map-container").css("left", "300px");
+        $(".main-container").css("margin-left", "350px");
+        $(".map-container").css("left", "350px");
     } else { /* Close/hide the side-nav */
         $(".side-nav").css("width", "0");
         $(".side-nav").css("padding", "0");
@@ -241,9 +241,11 @@ var ViewModel = function () {
             infowindow.marker = marker;
             var infowindowContent = '<div class="infowindow-content">';
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
-            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1)) + '</div>';
-            infowindowContent += '<div id="wiki-div"></div>';
+            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1)); 
             infowindowContent += '</div>';
+            infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
+            infowindowContent += '<div id="wikiArticles-list"></div>';
+            infowindowContent += '</div></div></div>';
             infowindow.setContent(infowindowContent);
             infowindow.open(map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
@@ -261,7 +263,7 @@ var ViewModel = function () {
         // when timesout
         // it will change the text of the wiki header to failier
         var wikiRequestTimeout = setTimeout(function () {
-            $("#wiki-div").text("failed to get wikipedia resources");
+            $("#wikiArticles-list").text("failed to get wikipedia resources");
         }, 8000);
 
         $.ajax({
@@ -270,16 +272,16 @@ var ViewModel = function () {
             // jsonp: "callback",
             success: function (response) {
                 var wikiArticles = response[1];
-                $("#wiki-div").text("");
+                $("#wikiArticles-list").text("");
                 if (wikiArticles.length == 0) {
-                    $("#wiki-div").text("No Wikipedia Articles was found");
+                    $("#wikiArticles-list").text("No Wikipedia Articles was found");
                 }
                 console.log(wikiArticles);
 
                 for (var i = 0; i < wikiArticles.length; i++) {
                     var articleStr = wikiArticles[i];
                     var url = "https://en.wikipedia.org/wiki/" + articleStr;
-                    $("#wiki-div").append("<li><a href='" + url + "'>" +
+                    $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
                         articleStr + "</a></li>")
                 };
 

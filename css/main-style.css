@@ -78,18 +78,18 @@ body {
 
 .main-container {
     transition: margin-left .5s;
-    margin-left: 300px;
+    margin-left: 350px;
 }
 
 .map-container {
     transition: left .5s;
-    left: 300px;
+    left: 350px;
 }
 
 .side-nav {
     height: 100%;
     /* 100% Full-height */
-    width: 300px;
+    width: 350px;
     /* 0 width - change this with JavaScript */
     padding: 30px;
     position: fixed;
@@ -109,8 +109,12 @@ body {
 
 /* ============================================================= */
 
+.locations-list{
+    list-style-type: none;
+}
+
 .location-list-item{
-    padding: 10px;
+    padding: 5px;
     width: 100%;
     font-size: 16px;
 }
