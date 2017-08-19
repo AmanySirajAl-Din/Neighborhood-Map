@@ -13,9 +13,12 @@ Part 4: The Frontend - JS & AJAX
     5. Intialize infoWindow var.
     6. Add infoWindow for each marker, has the marker title
     7. Create Click event for each marker (bounce and show infoWindow).
-    8. Add Filter drop menu
+    8. Add Filter drop menu.
     9. Add place type for each location to be filtered according it.
     10. Intialize locationTypes observableArray.
     11. Sort The locationTypes observableArray.
     12. Bind the locationTypes to the filter menu.
     13. Click event for the list of locations items.
+    14. Add Wikipedia Articles to infoWindow using Wikipedia Search API. (3rd-party API)
+    15. Add Full Adress of the location using Geocoding by lat/lng.
+    16. Error Handling for each request.
