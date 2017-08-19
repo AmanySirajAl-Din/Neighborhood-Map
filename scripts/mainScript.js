@@ -207,7 +207,7 @@ var ViewModel = function () {
         var position = locations[i].location;
         var title = locations[i].title;
         var placeType = locations[i].placeType;
-        
+
         // Create a marker per location, and put into markers array.
         var marker = new google.maps.Marker({
             //placeId: place.place_id,
@@ -252,7 +252,7 @@ var ViewModel = function () {
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
-        
+
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -273,22 +273,24 @@ var ViewModel = function () {
                 $(".location-list-item").removeClass("location-list-item-selected");
             });
         }
-        
+
         // get location details
         // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        geocoder.geocode({'location': marker.position}, function(results, status) {
-          if (status === 'OK') {
-            if (results[0]) {
-                $(".place-details").text(results[0].formatted_address);
+        geocoder.geocode({
+            'location': marker.position
+        }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    $(".place-details").text(results[0].formatted_address);
+                } else {
+                    window.alert('No results found');
+                }
             } else {
-              window.alert('No results found');
+                window.alert('Geocoder failed due to: ' + status);
             }
-          } else {
-            window.alert('Geocoder failed due to: ' + status);
-          }
         });
-        
-        
+
+
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
