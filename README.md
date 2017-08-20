@@ -22,9 +22,14 @@ Part 4: The Frontend - JS & AJAX
     14. Add Wikipedia Articles to infoWindow using Wikipedia Search API. (3rd-party API)
     15. Add Full Adress of the location using Geocoding by lat/lng.
     16. Error Handling for each request.
+
+[How to add images to README.md github](https://stackoverflow.com/questions/14494747/add-images-to-readme-md-on-github) 
     
-###### Marker Selection
+## Marker Selection
 ![alt text](https://raw.githubusercontent.com/AmanySirajAl-Din/Neighborhood-Map/using_KO/img/markerSelected.png)
 
-###### Mobile View
+## Mobile View
 ![alt text](https://raw.githubusercontent.com/AmanySirajAl-Din/Neighborhood-Map/using_KO/img/mobileView.png)
+
+## Apply Filter
+![alt text](https://raw.githubusercontent.com/AmanySirajAl-Din/Neighborhood-Map/using_KO/img/applyFilter.png)
