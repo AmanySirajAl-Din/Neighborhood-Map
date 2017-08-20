@@ -243,7 +243,14 @@ var ViewModel = function () {
 
 
     // fit the boundaries of the map for all the markers
-    map.fitBounds(mapBounds);
+    // utilize to make map display responsively 
+    // by using a window resize event 
+    // and call fitBounds method 
+    // to make sure map markers always fit on screen
+    // as user resizes their browser window
+    google.maps.event.addDomListener(window, 'resize', function () {
+        map.fitBounds(bounds); // `bounds` is a `LatLngBounds` object
+    });
 
 
     // This function populates the infowindow when the marker is clicked. We'll only allow
