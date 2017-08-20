@@ -299,13 +299,6 @@ var ViewModel = function () {
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
-        // workaround for error handling with JSON P
-        // first create a Timeout function
-        // when timesout
-        // it will change the text of the wiki header to failier
-        var wikiRequestTimeout = setTimeout(function () {
-            $("#wikiArticles-list").text("failed to get wikipedia resources");
-        }, 8000);
         $.ajax({
             url: urlWiki,
             dataType: 'jsonp',
