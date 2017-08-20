@@ -248,6 +248,7 @@ var ViewModel = function () {
     // and call fitBounds method 
     // to make sure map markers always fit on screen
     // as user resizes their browser window
+     map.fitBounds(mapBounds);
     google.maps.event.addDomListener(window, 'resize', function () {
         map.fitBounds(mapBounds); // `bounds` is a `LatLngBounds` object
     });
