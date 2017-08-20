@@ -306,13 +306,12 @@ var ViewModel = function () {
         var wikiRequestTimeout = setTimeout(function () {
             $("#wikiArticles-list").text("failed to get wikipedia resources");
         }, 8000);
-
         $.ajax({
             url: urlWiki,
             dataType: 'jsonp',
-            // jsonp: "callback",
-            success: function (response) {
-                var wikiArticles = response[1];
+            jsonp: "callback"
+        }).done(function (response) {
+            var wikiArticles = response[1];
                 $("#wikiArticles-list").text("");
                 if (wikiArticles.length === 0) {
                     $("#wikiArticles-list").text("No Wikipedia Articles was found");
@@ -325,9 +324,8 @@ var ViewModel = function () {
                 }
 
                 // success to get wikipedia resources
-                // then clear the Timeout Fun
-                clearTimeout(wikiRequestTimeout);
-            }
+        }).fail(function (jqXHR, textStatus) {
+            $("#wikiArticles-list").text("failed to get wikipedia resources");
         });
     }
 
