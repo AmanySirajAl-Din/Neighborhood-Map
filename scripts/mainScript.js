@@ -254,6 +254,22 @@ var ViewModel = function () {
 
     this.full_address = ko.observable();
 
+    // get location details
+    // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+    geocoder.geocode({
+        'location': marker.position
+    }, function (results, status) {
+        if (status === 'OK') {
+            if (results[0]) {
+                self.full_address(results[0].formatted_address);
+            } else {
+                window.alert('No results found');
+            }
+        } else {
+            window.alert('Geocoder failed due to: ' + status);
+        }
+    });
+
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
@@ -279,21 +295,7 @@ var ViewModel = function () {
             });
         }
 
-        // get location details
-        // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-        geocoder.geocode({
-            'location': marker.position
-        }, function (results, status) {
-            if (status === 'OK') {
-                if (results[0]) {
-                    self.full_address(results[0].formatted_address);
-                } else {
-                    window.alert('No results found');
-                }
-            } else {
-                window.alert('Geocoder failed due to: ' + status);
-            }
-        });
+
 
 
         // get Wiki articles
