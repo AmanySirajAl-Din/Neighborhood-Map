@@ -41,12 +41,12 @@ var markers = [],
 // Error handling for 
 // failing to load Google map
 // https://stackoverflow.com/questions/14687237/google-maps-api-async-loading
-var loadMapTimeout = setTimeout(function () {
-    if (!window.google || !window.google.maps) {
-        alert("Failed to load Google map" + status);
-    }
-}, 5000);
-
+/**
+ * Error callback for GMap API request
+ */
+function googleError() {
+    alert("Failed to load Google map" + status);
+};
 
 function initMap() {
     /* ====== Load Google Map ====== */
@@ -152,10 +152,10 @@ function initMap() {
         }
     ];
 
-    clearTimeout(loadMapTimeout);
     ko.applyBindings(new ViewModel());
-
 }
+
+
 
 
 // Using Knockout.js library
@@ -387,19 +387,3 @@ var ViewModel = function () {
     });
 }; /* end of ViewModel */
 
-/**
- * Filter function, return filtered food by
- * selected category from <select>
- */
-/*this.filterFood = ko.computed(() => {
-        if (!this.selectedCategory()) {
-          // No input found, return all food
-          return this.foodArray();
-        } else {
-          // input found, match food type to filter
-          return ko.utils.arrayFilter(this.foodArray(), (food) => {
-            return ( food.type === this.selectedCategory() );
-          });
-        } //.conditional
-      }); //.filterFood 
-*/
