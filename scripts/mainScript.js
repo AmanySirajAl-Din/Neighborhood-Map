@@ -156,7 +156,7 @@ function initMap() {
 }
 
 
-
+var firstLoad = true;
 
 // Using Knockout.js library
 var ViewModel = function () {
@@ -367,8 +367,10 @@ var ViewModel = function () {
     this.selectedFilter = ko.observable();
 
     this.filteringMarkers = ko.computed(() => {
-        // first deactivate all markers
-        self.deactivateAllMarkers();
+        if (!firstLoad) {
+            // first deactivate all markers
+            self.deactivateAllMarkers();
+        }
         // empty the filteredMarkers observableArray
         // source from: 
         // https://stackoverflow.com/questions/17545939/removeall-vs-empty-an-array-with-in-knockoutjs
@@ -380,10 +382,8 @@ var ViewModel = function () {
                 self.filteredMarkers.push(markers[i]);
 
             } else { // if (selectedFilter != markers[i].placeType) 
-                console.log("else")
                 markers[i].setMap(null);
             }
         }
     });
 }; /* end of ViewModel */
-
