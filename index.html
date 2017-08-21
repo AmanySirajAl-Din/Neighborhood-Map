@@ -22,8 +22,8 @@
         <h3><i class="fa fa-filter" aria-hidden="true"></i> Filter</h3>
         <h4><select data-bind="options: locationTypes, optionsCaption: 'Choose to filter', value: selectedFilter" class="filter-list">
         </select></h4>
-        <div data-bind="foreach: filteringMarkers" class="locations-list">
-            <p data-bind="text: $data.title" class="location-list-item button-style"></p>
+        <div data-bind="foreach: filteredMarkers" class="locations-list">
+            <p data-bind="text: $data.title, click: $parent.activeMarker" class="location-list-item button-style"></p>
         </div>
     </div>
     <div class="main-container">
@@ -54,7 +54,7 @@
     <!-- the First Part to Load the Map -->
     <!-- a script line into my HTML to load the API -->
     <!-- load the JS API -->
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJeAcMu__TdDZtMNYZ4tBD6uSgIn97dis&v=3&libraries=places&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJeAcMu__TdDZtMNYZ4tBD6uSgIn97dis&v=3&libraries=places&callback=initMap" onerror="googleError()">
     </script>
     <!-- this loads the JS definitions when the page starts loading in the browser -->
     <!-- loading the JS her asynchronously which means -->
