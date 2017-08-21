@@ -27,7 +27,7 @@ var markers = [],
  */
 function googleError() {
     alert("Failed to load Google map" + status);
-};
+}
 
 function initMap() {
     /* ====== Load Google Map ====== */
@@ -235,26 +235,27 @@ var ViewModel = function () {
 
     this.full_address = ko.observable();
 
-    // get location details
-    // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
-    geocoder.geocode({
-        'location': marker.position
-    }, function (results, status) {
-        if (status === 'OK') {
-            if (results[0]) {
-                self.full_address(results[0].formatted_address);
-            } else {
-                window.alert('No results found');
-            }
-        } else {
-            window.alert('Geocoder failed due to: ' + status);
-        }
-    });
 
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
+        // get location details
+        // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
+        geocoder.geocode({
+            'location': marker.position
+        }, function (results, status) {
+            if (status === 'OK') {
+                if (results[0]) {
+                    self.full_address(results[0].formatted_address);
+                } else {
+                    window.alert('No results found');
+                }
+            } else {
+                window.alert('Geocoder failed due to: ' + status);
+            }
+        });
+
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -371,20 +372,20 @@ var ViewModel = function () {
     this.toggleSide_nav_observable = ko.observable("");
 
     this.toggleSide_nav = function () {
-            if ($(".side-nav").width() === 0) {
-                self.toggleSide_nav_observable(true);
-            } else {
-                self.toggleSide_nav_observable(false);
-            }
+        if ($(".side-nav").width() === 0) {
+            self.toggleSide_nav_observable(true);
+        } else {
+            self.toggleSide_nav_observable(false);
+        }
     };
 
     firstLoad = false;
     $(window).resize(windowResize);
-    
-    function windowResize(){
-        if($(window).width() <= 630){
+
+    function windowResize() {
+        if ($(window).width() <= 630) {
             self.toggleSide_nav_observable(false);
-        }else{
+        } else {
             self.toggleSide_nav_observable(true);
         }
     }
