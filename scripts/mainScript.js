@@ -1,22 +1,3 @@
-/* source from https://www.w3schools.com/howto/howto_js_sidenav.asp */
-/* ================================================================ */
-
-$(".listview-toggle-btn").click(function () {
-    if ($(".side-nav").css("width") == "0px") { /* Open the side-nav */
-        $(".side-nav").css("width", "310px");
-        $(".side-nav").css("padding", "30px");
-        $(".main-container").css("margin-left", "310px");
-        $(".map-container").css("left", "310px");
-    } else { /* Close/hide the side-nav */
-        $(".side-nav").css("width", "0");
-        $(".side-nav").css("padding", "0");
-        $(".main-container").css("margin-left", "0");
-        $(".map-container").css("left", "0");
-        $(".map-container").css("left", "0");
-
-    }
-});
-
 // Finally the Last Part to load the Map -->
 // Some JS -->
 // Source from Udacity FSND 
@@ -386,4 +367,25 @@ var ViewModel = function () {
             }
         }
     });
+
+    this.toggleSide_nav_observable = ko.observable("");
+
+    this.toggleSide_nav = function () {
+            if ($(".side-nav").width() === 0) {
+                self.toggleSide_nav_observable(true);
+            } else {
+                self.toggleSide_nav_observable(false);
+            }
+    };
+
+    firstLoad = false;
+    $(window).resize(windowResize);
+    
+    function windowResize(){
+        if($(window).width() <= 630){
+            self.toggleSide_nav_observable(false);
+        }else{
+            self.toggleSide_nav_observable(true);
+        }
+    }
 }; /* end of ViewModel */

@@ -16,7 +16,8 @@
 
 <body>
     
-    <aside class="side-nav">
+    <aside class="side-nav" data-bind="style: {width: toggleSide_nav_observable() ? '310px' : '0',
+                                       padding: toggleSide_nav_observable() ? '30px' : '0'}">
         <h2>Amany's Locations</h2>
         <hr/>
         <h3><i class="fa fa-filter" aria-hidden="true"></i> Filter</h3>
@@ -26,9 +27,9 @@
             <p data-bind="text: $data.title, click: $parent.activeMarker" class="location-list-item button-style"></p>
         </div>
     </aside>
-    <main class="main-container">
+    <main class="main-container"  data-bind="style: {marginLeft: toggleSide_nav_observable() ? '310px' : '0'}">
         <nav class="fixed-top-div navbar-inverse" role="navigation">
-        <div class="listview-toggle-btn inline-block button-style">
+        <div class="listview-toggle-btn inline-block button-style" data-bind="click: toggleSide_nav()">
             <span class="sr-only">Toggel navigation</span>
             <i class="fa fa-bars"></i>
         </div>
@@ -36,7 +37,7 @@
         <h3 class="page-title inline-block hidden-xs hidden-sm">Project: Neighborhood Map</h3>
         <h3 class="page-title inline-block hidden-lg hidden-md hidden-xl">Neighborhood Map</h3>
         </nav>
-        <article class="map-container">
+        <article class="map-container" data-bind="style: {left: toggleSide_nav_observable() ? '310px' : '0'}">
             <!-- the Second Part to load the Map -->
             <!-- div element in my HTML body -->
             <!-- with thw id="map" -->
@@ -47,6 +48,8 @@
     <!-- ======= Scripts ======= -->
     <script src="lib/jquery-3.1.1.min.js"></script>
     <script src="lib/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="lib/jquery-ui.min.js"></script>
+    <script src="lib/jquery.ui.touch-punch.min.js"></script>
     <script src="lib/knockout-3.4.2.js"></script>
     <!-- Finally the Last Part to load the Map -->
     <!-- Some JS -->
