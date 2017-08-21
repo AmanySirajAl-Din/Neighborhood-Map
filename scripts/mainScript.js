@@ -164,7 +164,6 @@ var ViewModel = function () {
 
     // make a locationTypes observableArray
     this.locationTypes = ko.observableArray([]);
-    this.locationTypes.push("All");
 
     // Create observableArray of filtered markers
     this.filteredMarkers = ko.observableArray([]);
@@ -248,7 +247,7 @@ var ViewModel = function () {
     // and call fitBounds method 
     // to make sure map markers always fit on screen
     // as user resizes their browser window
-     map.fitBounds(mapBounds);
+    map.fitBounds(mapBounds);
     google.maps.event.addDomListener(window, 'resize', function () {
         map.fitBounds(mapBounds); // `bounds` is a `LatLngBounds` object
     });
@@ -306,18 +305,18 @@ var ViewModel = function () {
             jsonp: "callback"
         }).done(function (response) {
             var wikiArticles = response[1];
-                $("#wikiArticles-list").text("");
-                if (wikiArticles.length === 0) {
-                    $("#wikiArticles-list").text("No Wikipedia Articles was found");
-                }
-                for (var i = 0; i < wikiArticles.length; i++) {
-                    var articleStr = wikiArticles[i];
-                    var url = "https://en.wikipedia.org/wiki/" + articleStr;
-                    $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
-                        articleStr + "</a></li>");
-                }
+            $("#wikiArticles-list").text("");
+            if (wikiArticles.length === 0) {
+                $("#wikiArticles-list").text("No Wikipedia Articles was found");
+            }
+            for (var i = 0; i < wikiArticles.length; i++) {
+                var articleStr = wikiArticles[i];
+                var url = "https://en.wikipedia.org/wiki/" + articleStr;
+                $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
+                    articleStr + "</a></li>");
+            }
 
-                // success to get wikipedia resources
+            // success to get wikipedia resources
         }).fail(function (jqXHR, textStatus) {
             $("#wikiArticles-list").text("failed to get wikipedia resources");
         });
@@ -338,6 +337,7 @@ var ViewModel = function () {
         for (var i = 0; i < markers.length; i++) {
             markers[i].setAnimation(null);
         }
+        largeInfowindow.setMarker = null;
     };
 
     this.activeMarker = function (clickedLocation, event) {
@@ -360,9 +360,11 @@ var ViewModel = function () {
 
     // Filter's change event
     // to filter the locations and markers
-    $(".filter-list").change(filteringFun);
 
-    function filteringFun() {
+    // This will hold the selected value from drop down menu
+    this.selectedFilter = ko.observable();
+
+    this.filteringMarkers = ko.computed(() => {
         // first deactivate all markers
         self.deactivateAllMarkers();
         // empty the filteredMarkers observableArray
@@ -370,16 +372,33 @@ var ViewModel = function () {
         // https://stackoverflow.com/questions/17545939/removeall-vs-empty-an-array-with-in-knockoutjs
         self.filteredMarkers.removeAll();
 
-        var selectedFilter = $(this).find(":selected").val().toLowerCase();
         for (var i = 0; i < markers.length; i++) {
-            if (selectedFilter == "all" || selectedFilter == markers[i].placeType) {
+            if (!self.selectedFilter() || self.selectedFilter().toLowerCase() == markers[i].placeType) {
                 markers[i].setMap(map);
                 self.filteredMarkers.push(markers[i]);
 
             } else { // if (selectedFilter != markers[i].placeType) 
+                console.log("else")
                 markers[i].setMap(null);
 
             }
         }
-    }
+    });
 }; /* end of ViewModel */
+
+/**
+ * Filter function, return filtered food by
+ * selected category from <select>
+ */
+/*this.filterFood = ko.computed(() => {
+        if (!this.selectedCategory()) {
+          // No input found, return all food
+          return this.foodArray();
+        } else {
+          // input found, match food type to filter
+          return ko.utils.arrayFilter(this.foodArray(), (food) => {
+            return ( food.type === this.selectedCategory() );
+          });
+        } //.conditional
+      }); //.filterFood 
+*/
