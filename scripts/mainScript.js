@@ -252,12 +252,12 @@ var ViewModel = function () {
         map.fitBounds(mapBounds); // `bounds` is a `LatLngBounds` object
     });
 
+    this.full_address = ko.observable();
 
     // This function populates the infowindow when the marker is clicked. We'll only allow
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
-
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
@@ -265,7 +265,7 @@ var ViewModel = function () {
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
             infowindowContent += '</div>';
-            infowindowContent += '<div class="place-details"></div>';
+            infowindowContent += '<div class="place-details">' + self.full_address() + '</div>';
             infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
             infowindowContent += '<div id="wikiArticles-list"></div>';
             infowindowContent += '</div></div></div>';
@@ -286,7 +286,7 @@ var ViewModel = function () {
         }, function (results, status) {
             if (status === 'OK') {
                 if (results[0]) {
-                    $(".place-details").text(results[0].formatted_address);
+                    self.full_address(results[0].formatted_address);
                 } else {
                     window.alert('No results found');
                 }
@@ -380,7 +380,6 @@ var ViewModel = function () {
             } else { // if (selectedFilter != markers[i].placeType) 
                 console.log("else")
                 markers[i].setMap(null);
-
             }
         }
     });
