@@ -287,7 +287,6 @@ var ViewModel = function () {
                 jsonp: "callback"
             }).done(function (response) {
                 var wikiArticles = response[1];
-                $("#wikiArticles-list").text("");
                 if (wikiArticles.length === 0) {
                     infowindowContent += "No Wikipedia Articles was found </div>";
                 }
@@ -374,6 +373,7 @@ var ViewModel = function () {
 
             } else { // if (selectedFilter != markers[i].placeType) 
                 markers[i].setMap(null);
+                // setVisible didn't work for me because I want to remove the marker and its info wimdow
             }
         }
     });
