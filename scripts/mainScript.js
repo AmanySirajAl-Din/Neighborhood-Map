@@ -237,6 +237,7 @@ var ViewModel = function () {
     });
 
     this.full_address = ko.observable();
+    
 
 
     // This function populates the infowindow when the marker is clicked. We'll only allow
@@ -258,18 +259,16 @@ var ViewModel = function () {
                 window.alert('Geocoder failed due to: ' + status);
             }
         });
-
+        var infowindowContent = '<div class="infowindow-content">';
+        
         // Check to make sure the infowindow is not already opened on this marker.
         if (infowindow.marker != marker) {
             infowindow.marker = marker;
-            var infowindowContent = '<div class="infowindow-content">';
             infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
             infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
             infowindowContent += '</div>';
             infowindowContent += '<div class="place-details">' + self.full_address() + '</div>';
             infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
-            infowindowContent += '<div id="wikiArticles-list"></div>';
-            infowindowContent += '</div></div></div>';
             infowindow.setContent(infowindowContent);
             infowindow.open(map, marker);
             // Make sure the marker property is cleared if the infowindow is closed.
@@ -279,10 +278,6 @@ var ViewModel = function () {
                 $(".location-list-item").removeClass("location-list-item-selected");
             });
         }
-
-
-
-
         // get Wiki articles
         var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
 
@@ -294,20 +289,29 @@ var ViewModel = function () {
             var wikiArticles = response[1];
             $("#wikiArticles-list").text("");
             if (wikiArticles.length === 0) {
-                $("#wikiArticles-list").text("No Wikipedia Articles was found");
+                infowindowContent +="No Wikipedia Articles was found </div>";
             }
             for (var i = 0; i < wikiArticles.length; i++) {
                 var articleStr = wikiArticles[i];
                 var url = "https://en.wikipedia.org/wiki/" + articleStr;
-                $("#wikiArticles-list").append("<li><a href='" + url + "'>" +
-                    articleStr + "</a></li>");
+                infowindowContent += "<li><a href='" + url + "'>" +
+                    articleStr + "</a></li>";
             }
+        infowindow.setContent(infowindowContent + '</div>');
 
             // success to get wikipedia resources
         }).fail(function (jqXHR, textStatus) {
-            $("#wikiArticles-list").text("failed to get wikipedia resources");
+            infowindowContent +="failed to get wikipedia resources </div>";
+            infowindow.setContent(infowindowContent);
         });
+        
+
+        
     }
+
+
+
+        
 
     function markerClicked() {
         var thisMarker = this;
