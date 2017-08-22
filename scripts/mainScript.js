@@ -141,10 +141,10 @@ var firstLoad = true;
 // Using Knockout.js library
 var ViewModel = function () {
     var self = this;
-    
+
     // get the locations from json file
-    
-    
+
+
 
     // make a locationTypes observableArray
     this.locationTypes = ko.observableArray([]);
@@ -237,7 +237,7 @@ var ViewModel = function () {
     });
 
     this.full_address = ko.observable();
-    
+
 
 
     // This function populates the infowindow when the marker is clicked. We'll only allow
@@ -258,60 +258,62 @@ var ViewModel = function () {
             } else {
                 window.alert('Geocoder failed due to: ' + status);
             }
-        });
-        var infowindowContent = '<div class="infowindow-content">';
-        
-        // Check to make sure the infowindow is not already opened on this marker.
-        if (infowindow.marker != marker) {
-            infowindow.marker = marker;
-            infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
-            infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
-            infowindowContent += '</div>';
-            infowindowContent += '<div class="place-details">' + self.full_address() + '</div>';
-            infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
-            infowindow.setContent(infowindowContent);
-            infowindow.open(map, marker);
-            // Make sure the marker property is cleared if the infowindow is closed.
-            infowindow.addListener('closeclick', function () {
-                infowindow.setMarker = null;
-                marker.setAnimation(null);
-                $(".location-list-item").removeClass("location-list-item-selected");
+
+            var infowindowContent = '<div class="infowindow-content">';
+
+            // Check to make sure the infowindow is not already opened on this marker.
+            if (infowindow.marker != marker) {
+                infowindow.marker = marker;
+                infowindowContent += '<div class="marker-title">' + marker.title + '</div>';
+                infowindowContent += '<div class="marker-placeType">' + (marker.placeType.charAt(0).toUpperCase() + marker.placeType.slice(1));
+                infowindowContent += '</div>';
+                infowindowContent += '<div class="place-details">' + self.full_address() + '</div>';
+                infowindowContent += '<div id="wiki-div">Wikipedia Articles</div>';
+                infowindow.setContent(infowindowContent);
+                infowindow.open(map, marker);
+                // Make sure the marker property is cleared if the infowindow is closed.
+                infowindow.addListener('closeclick', function () {
+                    infowindow.setMarker = null;
+                    marker.setAnimation(null);
+                    $(".location-list-item").removeClass("location-list-item-selected");
+                });
+            }
+            // get Wiki articles
+            var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
+
+            $.ajax({
+                url: urlWiki,
+                dataType: 'jsonp',
+                jsonp: "callback"
+            }).done(function (response) {
+                var wikiArticles = response[1];
+                $("#wikiArticles-list").text("");
+                if (wikiArticles.length === 0) {
+                    infowindowContent += "No Wikipedia Articles was found </div>";
+                }
+                for (var i = 0; i < wikiArticles.length; i++) {
+                    var articleStr = wikiArticles[i];
+                    var url = "https://en.wikipedia.org/wiki/" + articleStr;
+                    infowindowContent += "<li><a href='" + url + "'>" +
+                        articleStr + "</a></li>";
+                }
+                infowindow.setContent(infowindowContent + '</div>');
+
+                // success to get wikipedia resources
+            }).fail(function (jqXHR, textStatus) {
+                infowindowContent += "failed to get wikipedia resources </div>";
+                infowindow.setContent(infowindowContent);
             });
-        }
-        // get Wiki articles
-        var urlWiki = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + marker.title + "&format=json&callback=wikiCallback";
-
-        $.ajax({
-            url: urlWiki,
-            dataType: 'jsonp',
-            jsonp: "callback"
-        }).done(function (response) {
-            var wikiArticles = response[1];
-            $("#wikiArticles-list").text("");
-            if (wikiArticles.length === 0) {
-                infowindowContent +="No Wikipedia Articles was found </div>";
-            }
-            for (var i = 0; i < wikiArticles.length; i++) {
-                var articleStr = wikiArticles[i];
-                var url = "https://en.wikipedia.org/wiki/" + articleStr;
-                infowindowContent += "<li><a href='" + url + "'>" +
-                    articleStr + "</a></li>";
-            }
-        infowindow.setContent(infowindowContent + '</div>');
-
-            // success to get wikipedia resources
-        }).fail(function (jqXHR, textStatus) {
-            infowindowContent +="failed to get wikipedia resources </div>";
-            infowindow.setContent(infowindowContent);
         });
-        
 
-        
+
+
+
     }
 
 
 
-        
+
 
     function markerClicked() {
         var thisMarker = this;
