@@ -244,6 +244,7 @@ var ViewModel = function () {
     // one infowindow which will open at the marker that is clicked, and populate based
     // on that markers position.
     function populateInfoWindow(marker, infowindow) {
+        infowindow.setContent('');
         // get location details
         // https://developers.google.com/maps/documentation/javascript/examples/geocoding-reverse
         geocoder.geocode({
@@ -260,7 +261,6 @@ var ViewModel = function () {
             }
 
             var infowindowContent = '<div class="infowindow-content">';
-
             // Check to make sure the infowindow is not already opened on this marker.
             if (infowindow.marker != marker) {
                 infowindow.marker = marker;
